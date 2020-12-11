@@ -1,0 +1,61 @@
+Kate Brownbill
+Sushi Ninja Update
+Friday December 11, 2020
+
+--=-=-Java Files-=-=--
+
+New classes, enums, and interfaces added.
+
+-=Interfaces=-
+Fighter.java
+	-Classes that implement this interface represent both the enemys and the player
+	-The fighter interface is flexable to allow for unique fighters
+	-Fighter instances will be put in the fighters folder
+
+Tile.java
+	-Classes that implement this interface make up the map that is played on durring gameplay
+	-May be changed depending on what functions I ultimatly end up using
+	-Tile instances will be put in the tiles folder
+
+-=Classes=-
+OpenspaceTile.java
+	-Implements the tile interface
+	-A tile that fighters can freely traverse and that doesn't block projectiles.
+
+DustbunnyFighter.java
+	-Implements the fighter interface
+	-A generic enemy with no special abilitys
+	-10 HP
+	-Deals 4-6 damage
+	-Move speed of 2
+	-Accuracy of 90%
+
+Main.java
+	-The main file for the project
+	-Doesn't do anything at the moment
+
+Coord.java
+	-A hashable function that holds two integers representing an X and Y
+	-Primary useage will be as the keys in a hashmap containing tiles
+	-Also used in the tile interface
+
+BattleMap.java
+	-A class responcable for interaction with tiles
+	-Empty at the moment
+	-Planned to be responcable for calculating a path between two tiles on the map
+	-Also going to be responcable for figuring out if one tile has line of sight to another tile
+	-Isn't responcable for knowing where on the map the fighters are
+
+-=Enums=-
+FighterStatus.java
+	-Responcable for holding information about if a fighter is alive or dead
+	-May have aditional statuses added in later
+
+--=-=-Non Java Files-=-=--
+Two png files have been added into the data folder.
+
+Dustbunny.png
+	-Represents fighters made by the Dustbunny.java class
+
+Openspace.png
+	-Represents tiles made by the Openspace.java class
