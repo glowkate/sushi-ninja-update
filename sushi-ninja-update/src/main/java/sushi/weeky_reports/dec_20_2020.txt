@@ -1,0 +1,17 @@
+Kate Brownbill
+Sushi Ninja Update
+Friday December 11, 2020
+
+A new png was added to the data folder containing the sprite for a wall tile.
+A new class that implements the Tile interface called WallTile was also added.
+The WallTile is a tile that you cannot move into. The WallTile will not alow
+for ranged attacks to pass through it.
+
+A new, vital class called the BattleMap class has been created. This class is
+responsible for the storing of and manipulation of Tiles. It uses a HashMap with
+a Coord as the keys to store Tiles in.
+
+A pathfinding algorithm was also created. I used Breath First Search due to the
+small size of the map. The code was mostly lifted from the old version of the
+game, however with some small modifications so that information didn't have to
+be stored within the tiles.
