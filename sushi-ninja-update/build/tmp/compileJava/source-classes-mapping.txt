@@ -6,9 +6,13 @@ sushi/Tile.java
  sushi.Tile
 sushi/Coord.java
  sushi.Coord
-sushi/Main.java
- sushi.Main
-sushi/tiles/OpenspaceTile.java
- sushi.tiles.OpenspaceTile
 sushi/FighterStatus.java
  sushi.FighterStatus
+sushi/tiles/WallTile.java
+ sushi.tiles.WallTile
+sushi/tiles/OpenspaceTile.java
+ sushi.tiles.OpenspaceTile
+sushi/BattleMap.java
+ sushi.BattleMap
+sushi/Main.java
+ sushi.Main

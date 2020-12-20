@@ -11,20 +11,17 @@ import sushi.*;
  *
  * @author kate
  */
-public class OpenspaceTile implements Tile {
+public class WallTile implements Tile {
     
     private final Coord XY;
     private final ArrayList<Tile> linkedTiles = new ArrayList();
-    private boolean isOccupied;
     
-    public OpenspaceTile(final int x, final int y){
+    public WallTile(final int x, final int y){
         XY = new Coord(x, y);
-        isOccupied = false;
     }
     
-    public OpenspaceTile(final Coord xy){
+    public WallTile(final Coord xy){
         XY = xy;
-        isOccupied = false;
     }
 
     //Returns the Tile's XY coordinate.
@@ -48,26 +45,26 @@ public class OpenspaceTile implements Tile {
     //Returns the image used to represent the Tile.
     @Override
     public File getImageFile(){
-        return(new File("sushi/data/OpenspaceTile.png"));
+        return(new File("sushi/data/WallTile.png"));
     }
     
     //Returns true if the tile obstructs ranged attacks.
     @Override
     public boolean isObstructing(){
-        return(false);
+        return(true);
     }
     
     //Returns a number from 1-5 that represents how favorable a path is to take. 
     //< 3 is a more favorable path, > 3 is a less favorable path.
     @Override
     public int getPathWeight(){
-        return(3);
+        return(5);
     }
     
     //Returns true if the given fighter can enter this tile from the given tile
     @Override
     public boolean canEnter(final Fighter enteringFighter, final Tile orginTile){
-        return(true);
+        return(false);
     }
     
     //Returns true if the given fighter can leave this tile to the given tile.
@@ -78,15 +75,11 @@ public class OpenspaceTile implements Tile {
     
     //Is called when a fighter enters this tile.
     @Override
-    public void enter(final Fighter enteringFighter, final Tile orginTile){
-        isOccupied = true;
-    }
+    public void enter(final Fighter enteringFighter, final Tile orginTile){}
     
     //Is called when a fighter leaves this tile. May or may not do something.
     @Override
-    public void leave(final Fighter leavingFighter, final Tile leavingTile){
-        isOccupied = false;
-    }
+    public void leave(final Fighter leavingFighter, final Tile leavingTile){}
     
     //Is called at the end of an in-game round
     @Override
@@ -94,7 +87,7 @@ public class OpenspaceTile implements Tile {
     
     @Override
     public String toString(){
-        return(XY + " OPENSPACE");
+        return(XY + " WALL");
     }
     
     @Override
@@ -110,6 +103,6 @@ public class OpenspaceTile implements Tile {
     
     @Override
     public int hashCode(){
-        return(13 * XY.hashCode());
+        return(11 * XY.hashCode());
     }
 }

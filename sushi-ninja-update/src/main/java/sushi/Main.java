@@ -5,6 +5,8 @@
  */
 package sushi;
 
+import sushi.fighters.DustbunnyFighter;
+
 /**
  *
  * @author kate
@@ -15,7 +17,15 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        String testImport = 
+                 "oooo"
+                +"owwo"
+                +"owwo"
+                +"ooow";
+        BattleMap test = new BattleMap(testImport,4,4);
+        
+        Fighter testFighter = new DustbunnyFighter();
+        System.out.println(test.findPathBetweenTwoTiles(new Coord(2, 0), new Coord(2, 3), testFighter));
     }
     
 }
