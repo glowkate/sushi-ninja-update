@@ -1,18 +1,20 @@
 sushi/fighters/DustbunnyFighter.java
  sushi.fighters.DustbunnyFighter
+sushi/tiles/WallTile.java
+ sushi.tiles.WallTile
 sushi/Fighter.java
  sushi.Fighter
 sushi/Tile.java
  sushi.Tile
 sushi/Coord.java
  sushi.Coord
-sushi/FighterStatus.java
- sushi.FighterStatus
-sushi/tiles/WallTile.java
- sushi.tiles.WallTile
+sushi/Main.java
+ sushi.Main
 sushi/tiles/OpenspaceTile.java
  sushi.tiles.OpenspaceTile
 sushi/BattleMap.java
  sushi.BattleMap
-sushi/Main.java
- sushi.Main
+sushi/GameTest.java
+ sushi.GameTest
+sushi/FighterStatus.java
+ sushi.FighterStatus
