@@ -16,15 +16,18 @@ public class OpenspaceTile implements Tile {
     private final Coord XY;
     private final ArrayList<Tile> linkedTiles = new ArrayList();
     private boolean isOccupied;
+    private final int hashCode;
     
-    public OpenspaceTile(final int x, final int y){
+    public OpenspaceTile(final int x, final int y, final int hash){
         XY = new Coord(x, y);
         isOccupied = false;
+        hashCode = hash;
     }
     
-    public OpenspaceTile(final Coord xy){
+    public OpenspaceTile(final Coord xy, final int hash){
         XY = xy;
         isOccupied = false;
+        hashCode = hash;
     }
 
     //Returns the Tile's XY coordinate.
@@ -67,7 +70,7 @@ public class OpenspaceTile implements Tile {
     //Returns true if the given fighter can enter this tile from the given tile
     @Override
     public boolean canEnter(final Fighter enteringFighter, final Tile orginTile){
-        return(true);
+        return(!isOccupied);
     }
     
     //Returns true if the given fighter can leave this tile to the given tile.
@@ -110,6 +113,6 @@ public class OpenspaceTile implements Tile {
     
     @Override
     public int hashCode(){
-        return(13 * XY.hashCode());
+        return(hashCode);
     }
 }

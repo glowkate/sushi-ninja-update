@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TileFactoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-01-10T21:49:28" hostname="kate-Latitude-E7440" time="0.056">
+  <properties/>
+  <testcase name="tileFactoryMakeTileWorks()" classname="TileFactoryTest" time="0.056"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

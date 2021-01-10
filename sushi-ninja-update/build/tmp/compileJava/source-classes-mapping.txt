@@ -4,17 +4,19 @@ sushi/tiles/WallTile.java
  sushi.tiles.WallTile
 sushi/Fighter.java
  sushi.Fighter
+sushi/TileType.java
+ sushi.TileType
 sushi/Tile.java
  sushi.Tile
 sushi/Coord.java
  sushi.Coord
 sushi/Main.java
  sushi.Main
+sushi/TileFactory.java
+ sushi.TileFactory
 sushi/tiles/OpenspaceTile.java
  sushi.tiles.OpenspaceTile
 sushi/BattleMap.java
  sushi.BattleMap
-sushi/GameTest.java
- sushi.GameTest
 sushi/FighterStatus.java
  sushi.FighterStatus

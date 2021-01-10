@@ -32,18 +32,9 @@ public class BattleMap {
             for(int y = 0; y < mapY; y++){
                 char tileTypeChar = mapInput.charAt(x + y*mapX);
                 Coord newTileCoord = new Coord(x, y);
-                Tile newTile;
-                switch(tileTypeChar){ //code smell
-                    case 'o':
-                        newTile = new OpenspaceTile(newTileCoord);
-                        break;
-                    case 'w':
-                        newTile = new WallTile(newTileCoord);
-                        break;
-                    default:
-                        newTile = null;
-                        System.exit(1);
-                }
+                TileFactory tf = TileFactory.getInstance();
+                Tile newTile = tf.makeTile(tileTypeChar, newTileCoord);
+                System.out.println(newTile);
                 tiles.put(newTileCoord, newTile);
             }
         }
@@ -136,5 +127,13 @@ public class BattleMap {
         }
         
         return(returnPath);
+    }
+    
+    public Tile getTile(int x, int y){
+        return getTile(new Coord(x, y));
+    }
+    
+    public Tile getTile(Coord xy){
+        return tiles.get(xy);
     }
 }

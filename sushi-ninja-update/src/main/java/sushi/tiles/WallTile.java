@@ -15,13 +15,16 @@ public class WallTile implements Tile {
     
     private final Coord XY;
     private final ArrayList<Tile> linkedTiles = new ArrayList();
+    private final int hashCode;
     
-    public WallTile(final int x, final int y){
+    public WallTile(final int x, final int y, int hash){
         XY = new Coord(x, y);
+        hashCode = hash;
     }
     
-    public WallTile(final Coord xy){
+    public WallTile(final Coord xy, int hash){
         XY = xy;
+        hashCode = hash;
     }
 
     //Returns the Tile's XY coordinate.
@@ -103,6 +106,6 @@ public class WallTile implements Tile {
     
     @Override
     public int hashCode(){
-        return(11 * XY.hashCode());
+        return(hashCode);
     }
 }
