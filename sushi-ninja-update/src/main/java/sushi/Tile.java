@@ -11,6 +11,12 @@ import java.util.ArrayList;
  *
  * @author kate
  */
+
+/*
+An interface for creating the tiles that make up the battle map. Classes that
+extend this interface should be put in the tiles folder and have Tile at the
+end of their name. Tiles are created using the TileFactory singleton.
+*/
 public interface Tile {
     
     //Returns the Tile's XY coordinate.

@@ -9,6 +9,11 @@ package sushi;
  *
  * @author kate
  */
+
+/*
+A 2D, hashable Coordinate. Used as keys for hashmaps along with storing locations
+of things in the game.
+*/
 public class Coord {
     private int x;
     private int y;

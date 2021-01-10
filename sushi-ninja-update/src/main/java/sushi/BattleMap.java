@@ -14,6 +14,13 @@ import sushi.tiles.*;
  *
  * @author kate
  */
+
+/*
+A class for holding information about the map that is played on in game.
+This class is responcable for finding the shortest path between two
+tiles, calculating if one tile has line of sight on another, and creating/storing
+all of the tiles used in a particular battle.
+*/
 public class BattleMap {
     private HashMap<Coord, Tile> tiles;
     private int mapX;

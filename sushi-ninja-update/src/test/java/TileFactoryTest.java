@@ -7,7 +7,6 @@
 import sushi.TileFactory;
 import sushi.TileType;
 import sushi.Tile;
-import sushi.tiles.*;
 import sushi.Coord;
 
 import org.junit.jupiter.api.Test;

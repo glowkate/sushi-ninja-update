@@ -9,6 +9,10 @@ package sushi;
  *
  * @author kate
  */
+
+/*
+Stores every type of tile in it. Used to interact with the TileFactory singleton.
+*/
 public enum TileType {
     OPENSPACE, WALL;
 }

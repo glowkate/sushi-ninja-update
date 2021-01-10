@@ -13,6 +13,16 @@ import sushi.tiles.*;
  *
  * @author kate
  */
+
+/*
+A singleton used to produce objects that implement the Tile interface.
+It is responcable for giving each one a unique hash code, it does this
+using a global counter that is called exclusivly durring tile creation.
+
+It uses two hashmaps, one for converting charicters into tile types and
+one for converting tile types into lambdas. These lambdas are what make the
+actual tile. There's a unique lambda for each potential tile to be created.
+*/
 public class TileFactory {
     private static TileFactory instance;
     private int hashCodeCounter;

@@ -11,6 +11,12 @@ import java.io.File;
  *
  * @author kate
  */
+
+/*
+An interface for creating the fighters that are controlled in game. Classes that
+extend this interface should be put in the fighters folder and have Fighter at
+the end of their name.
+*/
 public interface Fighter {
     
     //Called when a fighter moves to a tile.
