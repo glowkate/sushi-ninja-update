@@ -14,21 +14,20 @@ import java.util.Random;
 public class DustbunnyFighter implements Fighter{
     private final int maxHP = 10;
     private final int maxMove = 2;
-    private final double hashRNG;
+    private final int hashCode;
     private int hp;
     private int move;
     private Coord xy;
     private FighterStatus status;
     
     
-    public DustbunnyFighter(){
+    public DustbunnyFighter(int inputCode){
         hp = maxHP;
         move = maxMove;
         xy = new Coord(-1, -1);
         status = FighterStatus.ALIVE;
         
-        final Random rng = new Random();
-        hashRNG = rng.nextDouble();
+        hashCode = inputCode;
     }
 
     //Called when a fighter moves to a tile.
@@ -142,6 +141,6 @@ public class DustbunnyFighter implements Fighter{
     
     @Override
     public int hashCode(){
-        return((int)(12800000 * hashRNG));
+        return(hashCode);
     }
 }

@@ -1,17 +1,21 @@
-sushi/Main.java
- sushi.Main
-sushi/fighters/DustbunnyFighter.java
- sushi.fighters.DustbunnyFighter
 sushi/tiles/WallTile.java
  sushi.tiles.WallTile
+sushi/FighterFactory.java
+ sushi.FighterFactory
 sushi/Fighter.java
  sushi.Fighter
-sushi/TileType.java
- sushi.TileType
 sushi/Tile.java
  sushi.Tile
 sushi/Coord.java
  sushi.Coord
+sushi/fighters/DustbunnyFighter.java
+ sushi.fighters.DustbunnyFighter
+sushi/TileType.java
+ sushi.TileType
+sushi/FighterType.java
+ sushi.FighterType
+sushi/Main.java
+ sushi.Main
 sushi/TileFactory.java
  sushi.TileFactory
 sushi/tiles/OpenspaceTile.java

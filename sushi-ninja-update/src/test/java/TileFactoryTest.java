@@ -19,9 +19,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class TileFactoryTest {
     @Test
     public void tileFactoryMakeTileWorks(){
-        TileFactory tp = TileFactory.getInstance();
+        TileFactory tf = TileFactory.getInstance();
         for(TileType type : TileType.values()){
-            Tile testTile = tp.makeTile(type, new Coord(1, 1));
+            Tile testTile = tf.makeTile(type, new Coord(1, 1));
             assertNotNull(testTile);
         }
     }

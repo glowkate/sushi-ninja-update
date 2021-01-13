@@ -4,3 +4,5 @@ BattleMapTest.java
  BattleMapTest
 TileFactoryTest.java
  TileFactoryTest
+FighterFactoryTest.java
+ FighterFactoryTest

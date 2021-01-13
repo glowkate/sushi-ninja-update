@@ -6,8 +6,6 @@
 
 import java.util.LinkedList;
 import sushi.*;
-import sushi.tiles.*;
-import sushi.fighters.*;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -52,7 +50,8 @@ public class BattleMapTest {
         
         Coord coordIn1 = new Coord(2,1);
         Coord coordIn2 = new Coord(4,0);
-        Fighter fighterIn = new DustbunnyFighter();
+        FighterFactory ff = FighterFactory.getInstance();
+        Fighter fighterIn = ff.makeFighter(FighterType.DUSTBUNNY);
         LinkedList<Tile> pathTest = mapTest.findPathBetweenTwoTiles(coordIn1, coordIn2, fighterIn);
         LinkedList<Tile> pathGolden = new LinkedList<>();
         pathGolden.offer(mapTest.getTile(2,1));
