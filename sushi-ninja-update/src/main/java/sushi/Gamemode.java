@@ -9,12 +9,8 @@ package sushi;
  *
  * @author kate
  */
-public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-    }
+public interface Gamemode {
+    public boolean isGameDone();
     
+    public void periodic();
 }
