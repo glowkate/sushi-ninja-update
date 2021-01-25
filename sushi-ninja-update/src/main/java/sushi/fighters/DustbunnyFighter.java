@@ -33,7 +33,9 @@ public class DustbunnyFighter implements Fighter{
     //Called when a fighter moves to a tile.
     //Isn't in charge of removing movement.
     @Override
-    public void whenMoved(final Tile destination){}
+    public void whenMoved(final Tile destination){
+        xy = destination.getXY();
+    }
     
     //Called when a fighter attacks someone.
     //Note that the fighter isn't responcable for dealing the damage.

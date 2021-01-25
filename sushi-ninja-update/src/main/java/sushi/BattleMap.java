@@ -8,7 +8,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.ArrayList;
-import sushi.tiles.*;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 /**
  *
@@ -22,9 +23,9 @@ tiles, calculating if one tile has line of sight on another, and creating/storin
 all of the tiles used in a particular battle.
 */
 public class BattleMap {
-    private HashMap<Coord, Tile> tiles;
-    private int mapX;
-    private int mapY;
+    final private HashMap<Coord, Tile> tiles;
+    final private int mapX;
+    final private int mapY;
     
     public BattleMap(String mapInput, int mapX, int mapY){
         tiles = new HashMap();
@@ -41,7 +42,6 @@ public class BattleMap {
                 Coord newTileCoord = new Coord(x, y);
                 TileFactory tf = TileFactory.getInstance();
                 Tile newTile = tf.makeTile(tileTypeChar, newTileCoord);
-                System.out.println(newTile);
                 tiles.put(newTileCoord, newTile);
             }
         }
@@ -100,7 +100,6 @@ public class BattleMap {
         
         boolean shouldKeepSearching = true;
         while(currentTile != endTile && shouldKeepSearching){
-            System.out.println(currentTile);
             currentLinkedTiles = currentTile.getLinkedTiles();
             for(Tile t : currentLinkedTiles){
                 boolean canPass = t.canEnter(fighter, currentTile) &&
@@ -136,6 +135,61 @@ public class BattleMap {
         return(returnPath);
     }
     
+    public boolean checkLineOfSight(Coord orgin, Coord target){
+        ArrayList<Tile> projectilePath = getProjectilePath(orgin, target);
+        for (Tile t : projectilePath){
+            if(t.isObstructing()){
+                return(false);
+            }
+        }
+        return(true);
+    }        
+            
+    public ArrayList<Tile> getProjectilePath(Coord orgin, Coord target){
+        ArrayList<Tile> projectilePath = new ArrayList();
+        
+        final double orginX = orgin.getX() + 0.5;
+        final double orginY = orgin.getY() + 0.5;
+        final double targetX = target.getX() + 0.5;
+        final double targetY = target.getY() + 0.5;
+        
+        final boolean isTargetXBigger = orginX < targetX;
+        final boolean isTargetYBigger = orginY < targetY;
+        
+        final int xIncrease = isTargetXBigger? 1 : -1;
+        final int yIncrease = isTargetYBigger? 1 : -1;
+        
+        final double routeX = targetX - orginX;
+        final double routeY = targetY - orginY;
+        
+        final double incrementXT = routeX == 0? 5 : Math.abs(1/routeX);
+        final double incrementYT = routeY == 0? 5 : Math.abs(1/routeY);
+        
+        double nextXT = incrementXT/2;
+        double nextYT = incrementYT/2;
+        
+        int currentX = orgin.getX();
+        int currentY = orgin.getY();
+        
+        Coord crntCoord = orgin;
+        Tile crntTile;
+        
+        while(!crntCoord.equals(target)){
+            if(nextXT < nextYT){
+                currentX = currentX + xIncrease;
+                nextXT += incrementXT;
+            }
+            else{
+                currentY = currentY + yIncrease;
+                nextYT += incrementYT;
+            }
+            crntCoord = new Coord(currentX, currentY);
+            crntTile = tiles.get(crntCoord);
+            projectilePath.add(crntTile);
+        }
+        return(projectilePath);
+    }
+            
     public Tile getTile(int x, int y){
         return getTile(new Coord(x, y));
     }

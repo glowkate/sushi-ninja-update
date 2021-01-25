@@ -1,3 +1,5 @@
+sushi/gamemodes/DeathmatchGamemode.java
+ sushi.gamemodes.DeathmatchGamemode
 sushi/tiles/WallTile.java
  sushi.tiles.WallTile
 sushi/FighterFactory.java
@@ -8,19 +10,23 @@ sushi/Tile.java
  sushi.Tile
 sushi/Coord.java
  sushi.Coord
+sushi/TeamType.java
+ sushi.TeamType
 sushi/fighters/DustbunnyFighter.java
  sushi.fighters.DustbunnyFighter
 sushi/TileType.java
  sushi.TileType
 sushi/FighterType.java
  sushi.FighterType
+sushi/Gamemode.java
+ sushi.Gamemode
 sushi/Main.java
  sushi.Main
 sushi/TileFactory.java
  sushi.TileFactory
-sushi/tiles/OpenspaceTile.java
- sushi.tiles.OpenspaceTile
 sushi/BattleMap.java
  sushi.BattleMap
+sushi/tiles/OpenspaceTile.java
+ sushi.tiles.OpenspaceTile
 sushi/FighterStatus.java
  sushi.FighterStatus
