@@ -1,3 +1,5 @@
+SushiMinHeapTest.java
+ SushiMinHeapTest
 CoordTest.java
  CoordTest
 BattleMapTest.java

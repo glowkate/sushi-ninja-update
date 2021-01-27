@@ -37,6 +37,7 @@ public class DustbunnyFighter implements Fighter{
         xy = destination.getXY();
     }
     
+    
     //Called when a fighter attacks someone.
     //Note that the fighter isn't responcable for dealing the damage.
     @Override
@@ -98,6 +99,11 @@ public class DustbunnyFighter implements Fighter{
         return(status);
     }
     
+    @Override
+    public Coord getXY(){
+        return (xy);
+    }
+    
     //Returns the fighter's maximum hit points.
     @Override
     public int getMaxHP(){
@@ -131,6 +137,31 @@ public class DustbunnyFighter implements Fighter{
         move = maxMove;
     }
     
+    /*
+    Fighter ordering is dependant on their position on the map.
+    The farther towards the back a fighter is, the higher their drawing priority
+    is. This is to layer the sprites of the fighters along with giving the game
+    a sence of depth instead of a flat 2D board.
+    */
+    @Override
+    public int compareTo(Object o){
+        if(o instanceof Fighter){
+            Coord compareCoord = ((Fighter)o).getXY();
+            if(compareCoord.getY() > xy.getY()){
+                return(1);
+            }
+            else if(compareCoord.getY() < xy.getY()){
+                return(-1);
+            }
+            else{
+                return(0);
+            }
+        }
+        else{
+            return(-1);
+        }
+    }
+    
     @Override
     public String toString(){
         return("<DustbunnyFighter>" + xy);
@@ -138,7 +169,12 @@ public class DustbunnyFighter implements Fighter{
     
     @Override
     public boolean equals(final Object obj){
-        return(obj == this);
+        if(obj instanceof Fighter){
+            return(((DustbunnyFighter)obj).getXY() == xy);
+        }
+        else{
+            return(false);
+        }
     }
     
     @Override

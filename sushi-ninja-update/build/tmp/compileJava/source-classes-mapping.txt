@@ -6,6 +6,8 @@ sushi/FighterFactory.java
  sushi.FighterFactory
 sushi/Fighter.java
  sushi.Fighter
+sushi/SushiMinHeap.java
+ sushi.SushiMinHeap
 sushi/Tile.java
  sushi.Tile
 sushi/Coord.java

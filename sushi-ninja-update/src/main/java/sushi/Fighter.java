@@ -17,7 +17,7 @@ An interface for creating the fighters that are controlled in game. Classes that
 extend this interface should be put in the fighters folder and have Fighter at
 the end of their name.
 */
-public interface Fighter {
+public interface Fighter extends Comparable{
     
     //Called when a fighter moves to a tile.
     public void whenMoved(final Tile destination);
@@ -51,6 +51,9 @@ public interface Fighter {
     //Returns the fighter's status
     public FighterStatus getFighterStatus();
     
+    //Returns the fighter's XY
+    public Coord getXY();
+    
     //Returns the fighter's maximum hit points.
     public int getMaxHP();
     
@@ -68,7 +71,6 @@ public interface Fighter {
     
     //Is called at the end of an in-game round
     public void roundEnd();
-    
     
     @Override
     public String toString();
