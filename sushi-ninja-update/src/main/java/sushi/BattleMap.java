@@ -8,8 +8,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.ArrayList;
-import java.util.function.BiFunction;
-import java.util.function.Function;
+import java.io.Serializable;
 
 /**
  *
@@ -22,7 +21,7 @@ This class is responcable for finding the shortest path between two
 tiles, calculating if one tile has line of sight on another, and creating/storing
 all of the tiles used in a particular battle.
 */
-public class BattleMap {
+public class BattleMap implements Serializable{
     final private HashMap<Coord, Tile> tiles;
     final private int mapX;
     final private int mapY;
@@ -196,5 +195,10 @@ public class BattleMap {
     
     public Tile getTile(Coord xy){
         return tiles.get(xy);
+    }
+    
+    //For testing use ONLY
+    public HashMap<Coord, Tile> getMap(){
+        return (tiles);
     }
 }

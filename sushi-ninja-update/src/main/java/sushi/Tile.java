@@ -5,6 +5,7 @@
 package sushi;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -17,7 +18,7 @@ An interface for creating the tiles that make up the battle map. Classes that
 extend this interface should be put in the tiles folder and have Tile at the
 end of their name. Tiles are created using the TileFactory singleton.
 */
-public interface Tile {
+public interface Tile extends Serializable{
     
     //Returns the Tile's XY coordinate.
     public Coord getXY();

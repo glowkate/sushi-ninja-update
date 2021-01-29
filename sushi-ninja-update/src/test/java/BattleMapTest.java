@@ -12,6 +12,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
+import java.io.FileOutputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+
 
 /**
  *
@@ -125,5 +131,50 @@ public class BattleMapTest {
         arrayListGolden.add(mapTest.getTile(0,0));
         
         assertEquals(arrayListTest, arrayListGolden);
+    }
+    
+    
+    /*
+    This test serializes a battle map and loads it in again. The goal is to
+    test to ensure that the BattleMap can be serialized, even when modified.
+    */
+    @Test
+    public void BattleMapSerializationTest(){
+        String inputString = 
+                "wwwwwww"+
+                "oooowow"+
+                "owwooow"+
+                "ooooooo";
+        BattleMap mapGolden = new BattleMap(inputString, 7, 4);
+        FileOutputStream fos;
+        ObjectOutputStream out;
+        try
+        {
+          fos = new FileOutputStream("battlemaptest.ser");
+          out = new ObjectOutputStream(fos);
+          out.writeObject(mapGolden);
+          out.close();
+        }
+        catch(IOException ex)
+        {
+          ex.printStackTrace();
+        }
+        
+        FileInputStream fis = null;
+        ObjectInputStream in = null;
+        BattleMap mapTest = null;
+        try
+        {
+            fis = new FileInputStream("battlemaptest.ser");
+            in = new ObjectInputStream(fis);
+            mapTest = (BattleMap)in.readObject();
+            in.close();
+        }
+        catch(IOException | ClassNotFoundException ex)
+        {
+            ex.printStackTrace();
+        }
+        
+        assertEquals(mapTest.getMap(), mapGolden.getMap());
     }
 }

@@ -5,6 +5,8 @@
  */
 package sushi;
 
+import java.io.Serializable;
+
 /**
  *
  * @author kate
@@ -14,7 +16,7 @@ package sushi;
 A 2D, hashable Coordinate. Used as keys for hashmaps along with storing locations
 of things in the game.
 */
-public class Coord {
+public class Coord implements Serializable{
     private int x;
     private int y;
 
