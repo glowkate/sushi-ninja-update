@@ -5,6 +5,7 @@
  */
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import sushi.SushiMinHeap;
 
 import org.junit.jupiter.api.Test;
@@ -16,47 +17,55 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class SushiMinHeapTest {
     @Test
+    //- Initialize a test heap
+    //- Check for initial balancing of heap
+    //- Ensure that the pop function gets the smallest value in the heap
+    //- Double check that the heap is still balanced
+    //- More tests to ensure that the sorting/pop works
+    
     public void sushiMinHeapWorks(){
-        ArrayList<Comparable> arrayInput = new ArrayList();
-        ArrayList<Comparable> arrayGolden1 = new ArrayList();
-        ArrayList<Comparable> arrayGolden2 = new ArrayList();
+        //Initialize a test heap
+        final ArrayList<Comparable> arrayInput = new ArrayList(Arrays.asList
+        (5,6,2,7,8,3,1,9,4));
+        SushiMinHeap heapTest = new SushiMinHeap(arrayInput);     
         
-        arrayInput.add(5);
-        arrayInput.add(6);
-        arrayInput.add(2);
-        arrayInput.add(7);
-        arrayInput.add(8);
-        arrayInput.add(3);
-        arrayInput.add(1);
-        arrayInput.add(9);
-        arrayInput.add(4);
+        //Check for initial balancing of heap
+        //
+        /*
+        Our heap should look like this
         
-        arrayGolden1.add(1);
-        arrayGolden1.add(3);
-        arrayGolden1.add(2);
-        arrayGolden1.add(4);
-        arrayGolden1.add(8);
-        arrayGolden1.add(6);
-        arrayGolden1.add(5);
-        arrayGolden1.add(9);
-        arrayGolden1.add(7);
+                        1
+                    4       2
+                  6   8   5   3
+                 9 7
+        */
+        final ArrayList<Comparable> arrayGolden1 = new ArrayList(Arrays.asList
+        (1,4,2,6,8,5,3,9,7));        
+        assertEquals(arrayGolden1, heapTest.get());
         
-        arrayGolden2.add(3);
-        arrayGolden2.add(7);
-        arrayGolden2.add(4);
-        arrayGolden2.add(9);
-        arrayGolden2.add(8);
-        arrayGolden2.add(6);
-        arrayGolden2.add(5);
+        //Tests to ensure that the pop function gets the smallest value in the heap.
+        assertEquals(1, heapTest.popFromHeap());
+        assertEquals(2, heapTest.popFromHeap());
         
-        SushiMinHeap heapTest = new SushiMinHeap(arrayInput);
-        ArrayList<Comparable> arrayTest = heapTest.get();
+        //Double checking that the heap is still balanced
+        /*
+        Our heap should now look like this
         
-        assertEquals(arrayTest, arrayGolden1);
+                        3
+                    4       5
+                  6   8   8   7
+        */
+        final ArrayList<Comparable> arrayGolden2 = new ArrayList(Arrays.asList
+        (3,4,5,6,8,9,7));        
+        assertEquals(arrayGolden2, heapTest.get());
         
-        assertEquals(heapTest.popFromHeap(), 1);
-        assertEquals(heapTest.popFromHeap(), 2);
-        
-        assertEquals(arrayTest, arrayGolden2);
+        //More tests to ensure that the sorting/pop works
+        assertEquals(3, heapTest.popFromHeap());
+        assertEquals(4, heapTest.popFromHeap());
+        assertEquals(5, heapTest.popFromHeap());
+        assertEquals(6, heapTest.popFromHeap());
+        assertEquals(7, heapTest.popFromHeap());
+        assertEquals(8, heapTest.popFromHeap());
+        assertEquals(9, heapTest.popFromHeap());
     }
 }
