@@ -144,44 +144,63 @@ public class BattleMap implements Serializable{
         return(true);
     }        
             
-    public ArrayList<Tile> getProjectilePath(Coord orgin, Coord target){
+    /*
+    - Figure out the origin and target.
+    - Figure out what dirrection we're going.
+    - Figure out the T we need to go from a horizontal or vertical grid line.
+    - Figure out the T we need to get to the first edge, which is also the next edge.
+    - Add grid squares until we arrive at our destination
+    
+    Link to paper on algorithm used
+    https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.42.3443&rep=rep1&type=pdf
+    */
+    public ArrayList<Tile> getProjectilePath(Coord origin, Coord target){
         ArrayList<Tile> projectilePath = new ArrayList();
         
-        final double orginX = orgin.getX() + 0.5;
-        final double orginY = orgin.getY() + 0.5;
+        //Figure out the origin and target.
+        final double originX = origin.getX() + 0.5;
+        final double originY = origin.getY() + 0.5;
         final double targetX = target.getX() + 0.5;
         final double targetY = target.getY() + 0.5;
         
-        final boolean isTargetXBigger = orginX < targetX;
-        final boolean isTargetYBigger = orginY < targetY;
+        //Figure out what dirrection we're going
+        final boolean isTargetXBigger = originX < targetX;
+        final boolean isTargetYBigger = originY < targetY;
         
         final int xIncrease = isTargetXBigger? 1 : -1;
         final int yIncrease = isTargetYBigger? 1 : -1;
         
-        final double routeX = targetX - orginX;
-        final double routeY = targetY - orginY;
+        //Vector between the two points
+        final double routeX = targetX - originX;
+        final double routeY = targetY - originY;
         
+        //How much to increment XT and YT by when we cross a grid edge.
         final double incrementXT = routeX == 0? 5 : Math.abs(1/routeX);
         final double incrementYT = routeY == 0? 5 : Math.abs(1/routeY);
         
+        //Figure out the T we need to go from a horizontal or vertical grid line
         double nextXT = incrementXT/2;
         double nextYT = incrementYT/2;
         
-        int currentX = orgin.getX();
-        int currentY = orgin.getY();
+        int currentX = origin.getX();
+        int currentY = origin.getY();
         
-        Coord crntCoord = orgin;
+        Coord crntCoord = origin;
         Tile crntTile;
         
         while(!crntCoord.equals(target)){
+            //Figure out the T we need to get to the next edge.
             if(nextXT < nextYT){
+                //Here we cross an X-edge
                 currentX = currentX + xIncrease;
                 nextXT += incrementXT;
             }
             else{
+                //Here we cross an Y-edge
                 currentY = currentY + yIncrease;
                 nextYT += incrementYT;
             }
+            //Add grid squares until we arrive at our destination
             crntCoord = new Coord(currentX, currentY);
             crntTile = tiles.get(crntCoord);
             projectilePath.add(crntTile);

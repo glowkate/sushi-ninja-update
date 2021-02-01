@@ -75,6 +75,14 @@ public class BattleMapTest {
     
     @Test
     public void BattleMapCheckLineOfSightWorks(){
+        /*
+        This string represents a map.
+        A 'w' is a wall (blocks line of sight)
+        An 'o' is an openspace (allows line of sight)
+        If the projectile path crosses a wall tile it should
+        return false. This test ensures that a projectile
+        cannot go through a wall.
+        */
         String inputString = 
                 "ooowoow"+
                 "ooowwow"+
@@ -82,36 +90,47 @@ public class BattleMapTest {
                 "ooooooo";
         
         BattleMap mapTest = new BattleMap(inputString, 7, 4);
-        Coord coordIn1 = new Coord(5,0);
-        Coord coordIn2 = new Coord(5,3);
-        Coord coordIn3 = new Coord(3,3);
-        Coord coordIn4 = new Coord(2,3);
-        Coord coordIn5 = new Coord(0,0);
-        Coord coordIn6 = new Coord(2,2);
-        Coord coordIn7 = new Coord(4,0);
         
-        
-        boolean test1 = mapTest.checkLineOfSight(coordIn1, coordIn2);
-        boolean test2 = mapTest.checkLineOfSight(coordIn2, coordIn1);
-        boolean test3 = mapTest.checkLineOfSight(coordIn2, coordIn3);
-        boolean test4 = mapTest.checkLineOfSight(coordIn3, coordIn2);
-        boolean test5 = mapTest.checkLineOfSight(coordIn4, coordIn5);
-        boolean test6 = mapTest.checkLineOfSight(coordIn5, coordIn4);
-        boolean test7 = mapTest.checkLineOfSight(coordIn6, coordIn7);
-        boolean test8 = mapTest.checkLineOfSight(coordIn7, coordIn6);
-        
+        //Unobstructed column, should return true.
+        boolean test1 = mapTest.checkLineOfSight(new Coord(5,0), new Coord(5,3));
         assertTrue(test1);
+        
+        //Unobstructed column, should return true.
+        boolean test2 = mapTest.checkLineOfSight(new Coord(5,3), new Coord(5,0));
         assertTrue(test2);
+        
+        //Unobstructed row, should return true.
+        boolean test3 = mapTest.checkLineOfSight(new Coord(5,3), new Coord(3,3));
         assertTrue(test3);
+        
+        //Unobstructed row, should return true.
+        boolean test4 = mapTest.checkLineOfSight(new Coord(3,3), new Coord(5,3));
         assertTrue(test4);
+        
+        //Unobstructed diagonal in upper left of map, should return true.
+        boolean test5 = mapTest.checkLineOfSight(new Coord(2,3), new Coord(0,0));
         assertTrue(test5);
+        
+        //Unobstructed diagonal in upper left of map, should return true.
+        boolean test6 = mapTest.checkLineOfSight(new Coord(0,0), new Coord(2,3));
         assertTrue(test6);
+        
+        //Obstructed diagonal in upper half of map, hits wall at 5,1
+        boolean test7 = mapTest.checkLineOfSight(new Coord(2,2), new Coord(4,0));
         assertTrue(!test7);
+        
+        //Obstructed diagonal in upper half of map, hits wall at 5,1
+        boolean test8 = mapTest.checkLineOfSight(new Coord(4,0), new Coord(2,2));
         assertTrue(!test8);
     }    
     
     @Test
     public void BattleMapGetProjectilePathWorks(){
+        /*
+        This is not a test for line of sight, this is testing the
+        BattleMap's capability to find all of the tiles that touch
+        a line between two points.
+        */
         String inputString =
                   "ooo"
                 + "ooo"
@@ -123,7 +142,13 @@ public class BattleMapTest {
         Coord coordIn2 = new Coord(0,0);
         
         ArrayList<Tile> arrayListTest = mapTest.getProjectilePath(coordIn1, coordIn2);
-        ArrayList<Tile> arrayListGolden = new ArrayList();
+
+        /* There should be all the tiles on the line from 2,3 to 0,0
+           save for 2,3 in the produced ArrayList
+           Origin point is not included as thats where the projectile is
+           being fired from.
+        */
+        ArrayList<Tile> arrayListGolden = new ArrayList();        
         arrayListGolden.add(mapTest.getTile(2,2));
         arrayListGolden.add(mapTest.getTile(1,2));
         arrayListGolden.add(mapTest.getTile(1,1));
