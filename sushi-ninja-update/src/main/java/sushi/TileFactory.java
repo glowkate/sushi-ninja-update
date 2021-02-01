@@ -27,9 +27,12 @@ public class TileFactory {
     private static TileFactory instance;
     private int hashCodeCounter;
     
-    private HashMap<TileType, BiFunction<Coord, Integer, Tile>> typesToTiles;
-    private HashMap<Character, TileType> charToTypes;
+    private final HashMap<TileType, BiFunction<Coord, Integer, Tile>> typesToTiles;
+    private final HashMap<Character, TileType> charToTypes;
     
+    /*
+    Init for the singleton. Gives values for each of the varuables.
+    */
     private TileFactory(){
         hashCodeCounter = 0;
         
@@ -43,6 +46,12 @@ public class TileFactory {
         typesToTiles.put(TileType.OPENSPACE, (c, h) -> new OpenspaceTile(c, h));
     }
     
+    /*
+    Returns the instance of the TileFactory. Will always return a pointer to
+    the same instance.
+    
+    @return The instance of the TileFactory.
+    */
     public static TileFactory getInstance(){
         if (instance == null){
             instance = new TileFactory();
@@ -50,14 +59,32 @@ public class TileFactory {
         return (instance);
     }
     
+    /*
+    Creates a tile, the kind of tile created is based on the input char
+    w - wall, o - openspace
+    
+    @param type The charicter to be translated into a tile
+    @param XY The XY coordinates of the new tile
+    @return The created tile
+    */
     public Tile makeTile(char type, Coord XY){
         return(makeTile(charToTypes.get(type), XY));
     }
     
+    /*
+    Creates a tile, the kind of tile created is spesified in parameters
+    
+    @param type The TileType to be translated into a tile
+    @param XY The XY coordinates of the new tile
+    @return The created tile
+    */
     public Tile makeTile(TileType type, Coord XY){
         return(typesToTiles.get(type).apply(XY, nextHashValue()));
     }
     
+    /*
+    Generates a number. Each generated number will always be diffrent.
+    */
     private int nextHashValue(){
         hashCodeCounter++;
         return hashCodeCounter;
