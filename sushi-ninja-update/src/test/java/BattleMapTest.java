@@ -27,6 +27,11 @@ public class BattleMapTest {
     
     @Test
     public void BattleMapInitWorks(){
+        /*
+        This string represents a map.
+        A 'w' is a wall (blocks line of sight)
+        An 'o' is an openspace (allows line of sight)
+        */
         String inputString = 
                 "wwwwoow"+
                 "woowwow"+
@@ -48,19 +53,35 @@ public class BattleMapTest {
     
     @Test
     public void BattleMapFindPathBetweenTwoTilesWorks(){
+        /*
+        This string represents a map.
+        A 'w' is a wall (blocks line of sight)
+        An 'o' is an openspace (allows line of sight)
+        
+        This test:
+        - Inits a map
+        - Runs the pathfinder between two points
+        - Creates the expected path to have been taken
+        - Makes sure the two paths matched
+        */
         String inputString = 
                 "wwwwoow"+
                 "woowwow"+
                 "oooooow"+
                 "wwooooo";
         
+        //Init a map
         BattleMap mapTest = new BattleMap(inputString, 7, 4);
         
         Coord coordIn1 = new Coord(2,1);
         Coord coordIn2 = new Coord(4,0);
         FighterFactory ff = FighterFactory.getInstance();
         Fighter fighterIn = ff.makeFighter(FighterType.DUSTBUNNY);
+        
+        //Run the pathfinder between two points
         LinkedList<Tile> pathTest = mapTest.findPathBetweenTwoTiles(coordIn1, coordIn2, fighterIn);
+        
+        //Create the expected path to have been taken
         LinkedList<Tile> pathGolden = new LinkedList<>();
         pathGolden.offer(mapTest.getTile(2,1));
         pathGolden.offer(mapTest.getTile(2,2));
@@ -70,7 +91,9 @@ public class BattleMapTest {
         pathGolden.offer(mapTest.getTile(5,1));
         pathGolden.offer(mapTest.getTile(5,0));
         pathGolden.offer(mapTest.getTile(4,0));
-        assertEquals(pathTest, pathGolden);
+        
+        //Make sure they matched
+        assertEquals(pathGolden, pathTest);
     }
     
     @Test
@@ -162,17 +185,30 @@ public class BattleMapTest {
     /*
     This test serializes a battle map and loads it in again. The goal is to
     test to ensure that the BattleMap can be serialized, even when modified.
+    
+    This test:
+    - Inits a map
+    - Serializes the map to disk
+    - Load the saved map from disk
+    - Check to make sure the two maps are identical
     */
     @Test
     public void BattleMapSerializationTest(){
+        /*
+        This string represents a map.
+        A 'w' is a wall (blocks line of sight)
+        An 'o' is an openspace (allows line of sight)
+        */
         String inputString = 
                 "wwwwwww"+
                 "oooowow"+
                 "owwooow"+
                 "ooooooo";
+        //Inits a map
         BattleMap mapGolden = new BattleMap(inputString, 7, 4);
         FileOutputStream fos;
         ObjectOutputStream out;
+        //Serializes the map to disk
         try
         {
           fos = new FileOutputStream("battlemaptest.ser");
@@ -188,6 +224,7 @@ public class BattleMapTest {
         FileInputStream fis = null;
         ObjectInputStream in = null;
         BattleMap mapTest = null;
+        //Load the saved map from disk
         try
         {
             fis = new FileInputStream("battlemaptest.ser");
@@ -200,6 +237,7 @@ public class BattleMapTest {
             ex.printStackTrace();
         }
         
+        //Check to make sure the two maps are identical
         assertEquals(mapTest.getMap(), mapGolden.getMap());
     }
 }
